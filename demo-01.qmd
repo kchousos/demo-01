@@ -1,40 +1,115 @@
 ---
 title: LLM-Harness (TBD)
-subtitle: 1st Demo 
+subtitle: 1st Demo
 date: May 12, 2025
 author:
   - name: Konstantinos Chousos
     email: sdi2000215@di.uoa.gr
     orcid: 0009-0008-6063-7915
     affiliations: Department of Informatics & Telecommunications, University of Athens
-footer: LLM-Harness 
+footer: Konstantinos Chousos - LLM-Harness
 embed-resources: false
-bibliography: "/home/kchou/Documents/Zotero Library/biblio.bib"
-csl: "/home/kchou/Documents/Zotero/styles/ieee.csl"
+bibliography: ./resources/biblio.bib
+csl: ./resources/ieee.csl
 lightbox: true
 defaultTiming: 40
 format:
   clean-revealjs:
     default: true
     menu: false
-    logo: "https://feel4diabetes-study.eu/wp-content/uploads/2023/10/uoa_logo_eng-1024x271-1.png"
-    theme: [default]
+    logo: https://feel4diabetes-study.eu/wp-content/uploads/2023/10/uoa_logo_eng-1024x271-1.png
+    theme:
+      - default
 ---
-
 # Overview
 
-1.  Intro to fuzzing
-2.  OSS-Fuzz
-3.  OSS-Fuzz-Gen
-    1.  `from_scratch` branch
-4.  Future work
+1. Introduction
+2. Libraries used
+3. Development tools
+4. LLM-Harness
+	1. Current status
+	2. Current features
+	3. Current problems
+5. Next steps
 
-## References
+# Introduction {background-color="#40666e"}
+
+## Main Goal
+
+A system that:
+
+1. Takes a *bare* C/C++ project as input.
+2. Gathers source code and info about the project.
+3. Calls an LLM to create a new fuzzing harness [@manesArtScienceEngineering2019] for the project.
+4. Builds harness, executes it and evaluates it.
+5. If the harness passes the evaluates, integrates it into project (TODO).
+
+## Related work 
+
+1. **IRIS** [@liIRISLLMAssistedStatic2025]: Neurosymbolic system using LLMs for static analysis.
+2. **ProphetFuzz** [@wangProphetFuzzFullyAutomated2024]: LLM-assisted fuzzing for option combinations.
+3. **FuzzGPT** & **TitanFuzz** [@fuzzgpt2023;@titanfuzz2023]: LLM-generated Python DL programs, used as *inputs* for fuzzing DL frameworks, e.g. PyTorch and TensorFlow [@paszkePyTorchImperativeStyle2019;@tensorflow2015].
+4. **KLEE** [@cadarKLEEUnassistedAutomatic2008]: Symbolic execution tool designed to automatically generate high-coverage test cases.
+
+## Related work
+### Google
+
+1. **OSS-Fuzz-Gen** [@Liu_OSS-Fuzz-Gen_Automated_Fuzz_2024]: Automatic generation of harnesses for OSS-Fuzz projects [@aryaOSSFuzz2025]. Preexisting harnesses needed.
+2. **FUDGE** [@babicFUDGEFuzzDriver2019]: *Closed-source* program for automatic harness generation of C/C++ projects through LLMs.
+3. **FuzzGen** [@ispoglouFuzzGenAutomaticFuzzer2020]: Automatic harness generation through whole system analysis. Uses programs using the API under test to generate a dependency graph of the API functions.
+
+
+:::notes
+Αυτά μόνο είναι τα μεγαλύτερα projects LLM ↔ fuzzing.
+:::
+
+# Libraries Used {background-color="#40666e"}
+
+## DSPy
+### **D**eclarative **S**elf-improving **Py**thon
+
+Declarative Python framework for *programming*, instead of prompting, LLMs [@khattabDSPyCompilingDeclarative2023]. Developed by Stanford's NLP research team.
+
+## DSPy
+### Modules
+
+DSPy provides built-in modules to generically compose LLMs and prompting techniques, e.g. modules corresponding to "Chain of Thought" [@weiChainofThoughtPromptingElicits2023] and "ReAct" [@yaoReActSynergizingReasoning2023] prompting techniques.
+
+:::{.fragment}
+
+```{.python code-line-numbers="|2-3|5-6"}
+import dspy
+lm = dspy.LM('openai/gpt-4o-mini', api_key='YOUR_OPENAI_API_KEY')
+dspy.configure(lm=lm)
+
+math = dspy.ChainOfThought("question -> answer: float")
+math(question="Two dice are tossed. What is the probability that the sum equals two?")
+```
+
+:::
+
+## DSPy
+### Prompt Optimizing
+
+> Given a few tens or hundreds of representative _inputs_ of your task and a _metric_ that can measure the quality of your system's outputs, you can use a DSPy optimizer
+
+# Development Tools  {background-color="#40666e"}
+
+## Development Tools
+
+- [Ruff](https://docs.astral.sh/ruff/): Linter &  formatter.
+- [Mypy](https://mypy-lang.org/): Static type checker.
+- [Pre-commit](https://pre-commit.com): Declarative manager of pre-commit git hooks.
+- [PyTest](https://docs.pytest.org/en/stable/): Python test framework.
+
+# Current Status {background-color="#40666e"}
+
+# References
 
 ::: {#refs .smaller}
 :::
 
-##  {.center}
+# {.center}
 
 These slides can be found at: <https://kchousos.github.io/demo-01/>
 
