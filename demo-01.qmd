@@ -26,11 +26,7 @@ format:
 1. Introduction
 2. Libraries used
 3. Development tools
-4. LLM-Harness
-	1. Current status
-	2. Current features
-	3. Current problems
-5. Next steps
+4. LLM-Harness showcase/discussion
 
 # Introduction {background-color="#40666e"}
 
@@ -40,43 +36,46 @@ A system that:
 
 1. Takes a *bare* C/C++ project as input.
 2. Gathers source code and info about the project.
-3. Calls an LLM to create a new fuzzing harness [@manesArtScienceEngineering2019] for the project.
+3. Calls an LLM to create a new fuzzing harness [@manes2019] for the project.
 4. Builds harness, executes it and evaluates it.
-5. If the harness passes the evaluates, integrates it into project (TODO).
+5. If the harness passes the evaluation, integrates it into project (TODO).
 
 ## Related work 
 
-1. **IRIS** [@liIRISLLMAssistedStatic2025]: Neurosymbolic system using LLMs for static analysis.
-2. **ProphetFuzz** [@wangProphetFuzzFullyAutomated2024]: LLM-assisted fuzzing for option combinations.
-3. **FuzzGPT** & **TitanFuzz** [@fuzzgpt2023;@titanfuzz2023]: LLM-generated Python DL programs, used as *inputs* for fuzzing DL frameworks, e.g. PyTorch and TensorFlow [@paszkePyTorchImperativeStyle2019;@tensorflow2015].
-4. **KLEE** [@cadarKLEEUnassistedAutomatic2008]: Symbolic execution tool designed to automatically generate high-coverage test cases.
+1. **IRIS** [@iris]: Neurosymbolic system using LLMs for static analysis.
+2. **ProphetFuzz** [@prophetfuzz]: LLM-assisted fuzzing for option combinations.
+3. **FuzzGPT** & **TitanFuzz** [@fuzzgpt;@titanfuzz]: LLM-generated Python DL programs, used as *inputs* for fuzzing DL frameworks, e.g. PyTorch and TensorFlow [@pytorch;@tensorflow].
+4. **KLEE** [@klee]: Symbolic execution tool designed to automatically generate high-coverage test cases.
+
+::: {.notes}
+KLEE: 2008
+:::
 
 ## Related work
 ### Google
 
-1. **OSS-Fuzz-Gen** [@Liu_OSS-Fuzz-Gen_Automated_Fuzz_2024]: Automatic generation of harnesses for OSS-Fuzz projects [@aryaOSSFuzz2025]. Preexisting harnesses needed.
-2. **FUDGE** [@babicFUDGEFuzzDriver2019]: *Closed-source* program for automatic harness generation of C/C++ projects through LLMs.
-3. **FuzzGen** [@ispoglouFuzzGenAutomaticFuzzer2020]: Automatic harness generation through whole system analysis. Uses programs using the API under test to generate a dependency graph of the API functions.
+1. **OSS-Fuzz-Gen** [@oss-fuzz-gen]: Automatic generation of harnesses for OSS-Fuzz projects [@oss-fuzz]. Preexisting harnesses needed.
+2. **FUDGE** [@fudge]: *Closed-source* program for automatic harness generation of C/C++ projects through LLMs.
+3. **FuzzGen** [@fuzzgen]: Automatic harness generation through whole system analysis. Uses programs using the API under test to generate a dependency graph of the API functions.
 
 
 :::notes
 Αυτά μόνο είναι τα μεγαλύτερα projects LLM ↔ fuzzing.
 :::
 
-# Libraries Used {background-color="#40666e"}
+# Libraries Used {background-color="#40666e"} 
 
 ## DSPy
 ### **D**eclarative **S**elf-improving **Py**thon
 
-Declarative Python framework for *programming*, instead of prompting, LLMs [@khattabDSPyCompilingDeclarative2023]. Developed by Stanford's NLP research team.
+Declarative Python framework for *programming*, instead of prompting, LLMs [@dspy]. Developed by Stanford's NLP research team.
 
 ## DSPy
 ### Modules
 
-DSPy provides built-in modules to generically compose LLMs and prompting techniques, e.g. modules corresponding to "Chain of Thought" [@weiChainofThoughtPromptingElicits2023] and "ReAct" [@yaoReActSynergizingReasoning2023] prompting techniques.
+DSPy provides built-in modules to generically compose LLMs and prompting techniques, e.g. modules corresponding to "Chain of Thought" [@chainofthought] and "ReAct" [@reAct] prompting techniques.
 
 :::{.fragment}
-
 ```{.python code-line-numbers="|2-3|5-6"}
 import dspy
 lm = dspy.LM('openai/gpt-4o-mini', api_key='YOUR_OPENAI_API_KEY')
@@ -85,26 +84,57 @@ dspy.configure(lm=lm)
 math = dspy.ChainOfThought("question -> answer: float")
 math(question="Two dice are tossed. What is the probability that the sum equals two?")
 ```
-
 :::
 
 ## DSPy
 ### Prompt Optimizing
 
-> Given a few tens or hundreds of representative _inputs_ of your task and a _metric_ that can measure the quality of your system's outputs, you can use a DSPy optimizer
+> Given a few tens or hundreds of representative _inputs_ of your task and a _metric_ that can measure the quality of your system's outputs, you can use a DSPy optimizer.
 
 # Development Tools  {background-color="#40666e"}
 
 ## Development Tools
 
-- [Ruff](https://docs.astral.sh/ruff/): Linter &  formatter.
-- [Mypy](https://mypy-lang.org/): Static type checker.
-- [Pre-commit](https://pre-commit.com): Declarative manager of pre-commit git hooks.
-- [PyTest](https://docs.pytest.org/en/stable/): Python test framework.
+- [uv](https://docs.astral.sh/uv/): Python package and project manager (poetry replacement).
+- [ruff](https://docs.astral.sh/ruff/): Linter &  formatter.
+- [mypy](https://mypy-lang.org/): Static type checker.
+- [pre-commit](https://pre-commit.com): Declarative manager of pre-commit git hooks.
+- [pytest](https://docs.pytest.org/en/stable/): Python test framework.
+- [pdoc](https://pdoc.dev/): Automatic API documentation.
 
 # Current Status {background-color="#40666e"}
 
-# References
+## Features
+
+::: {.incremental}
+- Works for simple projects.
+- All source code files are included in the prompt.
+- Simple query to LLM (no prompting techniques yet).
+- Builds the harness semi-automatically.
+- Simple evaluation:
+  1. Built succesfully?
+  2. Times out in a reasonable timeframe?
+  3. Produced at least one new crash file?
+:::
+
+# Demo {background-color="#40666e"}
+
+::: notes
+demo time
+:::
+
+## Problems/Next steps
+
+::: {.incremental}
+- Localization/relevant code.
+- Complicated project structures and build systems.
+- Advanced prompting techniques/experimentation with DSPy.
+  - Potential switch to LangChain?
+- Inclusion of static analysis info.
+- Docker container, GitHub action etc...
+:::
+
+## References
 
 ::: {#refs .smaller}
 :::
@@ -113,6 +143,6 @@ math(question="Two dice are tossed. What is the probability that the sum equals 
 
 These slides can be found at: <https://kchousos.github.io/demo-01/>
 
-# Thank you!
+# 
 
-![](){fig-align="center"}
+![](https://media3.giphy.com/media/6tHy8UAbv3zgs/giphy.gif?cid=6c09b952y4e0c9315imrplpx5yf1ajnlol53u1jdd5bhztqe&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g){fig-align="center"}

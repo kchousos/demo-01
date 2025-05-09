@@ -6,20 +6,11 @@
 <script src="demo-01_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="demo-01_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="demo-01_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="demo-01_files/libs/quarto-html/quarto-syntax-highlighting-e7f5f70a9e27d410b7ae2c681a3d6791.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="demo-01_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="demo-01_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="demo-01_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script src="demo-01_files/libs/clipboard/clipboard.min.js"></script>
-<script src="demo-01_files/libs/quarto-html/tabby.min.js"></script>
-<script src="demo-01_files/libs/quarto-html/popper.min.js"></script>
-<script src="demo-01_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="demo-01_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="demo-01_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="demo-01_files/libs/quarto-html/quarto-syntax-highlighting-e7f5f70a9e27d410b7ae2c681a3d6791.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="demo-01_files/libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="demo-01_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="demo-01_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="demo-01_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.30">
+  <meta name="generator" content="quarto-1.7.29">
 
   <meta name="author" content="Konstantinos Chousos">
   <meta name="dcterms.date" content="2025-05-12">
@@ -251,13 +242,7 @@ Konstantinos Chousos <a href="https://orcid.org/0009-0008-6063-7915" class="quar
 <li>Introduction</li>
 <li>Libraries used</li>
 <li>Development tools</li>
-<li>LLM-Harness
-<ol type="1">
-<li>Current status</li>
-<li>Current features</li>
-<li>Current problems</li>
-</ol></li>
-<li>Next steps</li>
+<li>LLM-Harness showcase/discussion</li>
 </ol>
 </section>
 
@@ -272,30 +257,21 @@ Konstantinos Chousos <a href="https://orcid.org/0009-0008-6063-7915" class="quar
 <ol type="1">
 <li>Takes a <em>bare</em> C/C++ project as input.</li>
 <li>Gathers source code and info about the project.</li>
-<li>Calls an LLM to create a new fuzzing harness <span class="citation" data-cites="manesArtScienceEngineering2019"><a href="#/references" role="doc-biblioref" onclick="">[1]</a></span> for the project.</li>
+<li>Calls an LLM to create a new fuzzing harness <span class="citation" data-cites="manes2019"><a href="#/references" role="doc-biblioref" onclick="">[1]</a></span> for the project.</li>
 <li>Builds harness, executes it and evaluates it.</li>
-<li>If the harness passes the evaluates, integrates it into project (TODO).</li>
+<li>If the harness passes the evaluation, integrates it into project (TODO).</li>
 </ol>
 </section>
 <section id="related-work" class="slide level2">
 <h2>Related work</h2>
 <ol type="1">
-<li><strong>IRIS</strong> <span class="citation" data-cites="liIRISLLMAssistedStatic2025"><a href="#/references" role="doc-biblioref" onclick="">[2]</a></span>: Neurosymbolic system using LLMs for static analysis.</li>
-<li><strong>ProphetFuzz</strong> <span class="citation" data-cites="wangProphetFuzzFullyAutomated2024"><a href="#/references" role="doc-biblioref" onclick="">[3]</a></span>: LLM-assisted fuzzing for option combinations.</li>
-<li><strong>FuzzGPT</strong> &amp; <strong>TitanFuzz</strong> <span class="citation" data-cites="fuzzgpt2023 titanfuzz2023"><a href="#/references" role="doc-biblioref" onclick="">[4]</a>, <a href="#/references" role="doc-biblioref" onclick="">[5]</a></span>: LLM-generated Python DL programs, used as <em>inputs</em> for fuzzing DL frameworks, e.g.&nbsp;PyTorch and TensorFlow <span class="citation" data-cites="paszkePyTorchImperativeStyle2019 tensorflow2015"><a href="#/references" role="doc-biblioref" onclick="">[6]</a>, <a href="#/references" role="doc-biblioref" onclick="">[7]</a></span>.</li>
-<li><strong>KLEE</strong> <span class="citation" data-cites="cadarKLEEUnassistedAutomatic2008"><a href="#/references" role="doc-biblioref" onclick="">[8]</a></span>: Symbolic execution tool designed to automatically generate high-coverage test cases.</li>
-</ol>
-</section>
-<section id="related-work-1" class="slide level2">
-<h2>Related work</h2>
-<h3 id="google">Google</h3>
-<ol type="1">
-<li><strong>OSS-Fuzz-Gen</strong> <span class="citation" data-cites="Liu_OSS-Fuzz-Gen_Automated_Fuzz_2024"><a href="#/references" role="doc-biblioref" onclick="">[9]</a></span>: Automatic generation of harnesses for OSS-Fuzz projects <span class="citation" data-cites="aryaOSSFuzz2025"><a href="#/references" role="doc-biblioref" onclick="">[10]</a></span>. Preexisting harnesses needed.</li>
-<li><strong>FUDGE</strong> <span class="citation" data-cites="babicFUDGEFuzzDriver2019"><a href="#/references" role="doc-biblioref" onclick="">[11]</a></span>: <em>Closed-source</em> program for automatic harness generation of C/C++ projects through LLMs.</li>
-<li><strong>FuzzGen</strong> <span class="citation" data-cites="ispoglouFuzzGenAutomaticFuzzer2020"><a href="#/references" role="doc-biblioref" onclick="">[12]</a></span>: Automatic harness generation through whole system analysis. Uses programs using the API under test to generate a dependency graph of the API functions.</li>
+<li><strong>IRIS</strong> <span class="citation" data-cites="iris"><a href="#/references" role="doc-biblioref" onclick="">[2]</a></span>: Neurosymbolic system using LLMs for static analysis.</li>
+<li><strong>ProphetFuzz</strong> <span class="citation" data-cites="prophetfuzz"><a href="#/references" role="doc-biblioref" onclick="">[3]</a></span>: LLM-assisted fuzzing for option combinations.</li>
+<li><strong>FuzzGPT</strong> &amp; <strong>TitanFuzz</strong> <span class="citation" data-cites="fuzzgpt titanfuzz"><a href="#/references" role="doc-biblioref" onclick="">[4]</a>, <a href="#/references" role="doc-biblioref" onclick="">[5]</a></span>: LLM-generated Python DL programs, used as <em>inputs</em> for fuzzing DL frameworks, e.g.&nbsp;PyTorch and TensorFlow <span class="citation" data-cites="pytorch tensorflow"><a href="#/references" role="doc-biblioref" onclick="">[6]</a>, <a href="#/references" role="doc-biblioref" onclick="">[7]</a></span>.</li>
+<li><strong>KLEE</strong> <span class="citation" data-cites="klee"><a href="#/references" role="doc-biblioref" onclick="">[8]</a></span>: Symbolic execution tool designed to automatically generate high-coverage test cases.</li>
 </ol>
 <aside class="notes">
-<p>Αυτά μόνο είναι τα μεγαλύτερα projects LLM ↔︎ fuzzing.</p>
+<p>KLEE: 2008</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -306,7 +282,19 @@ Konstantinos Chousos <a href="https://orcid.org/0009-0008-6063-7915" class="quar
           width: 1px!important;
           overflow: hidden!important;
           display:block!important;
-      }</style><style type="text/css">
+      }</style></aside>
+</section>
+<section id="related-work-1" class="slide level2">
+<h2>Related work</h2>
+<h3 id="google">Google</h3>
+<ol type="1">
+<li><strong>OSS-Fuzz-Gen</strong> <span class="citation" data-cites="oss-fuzz-gen"><a href="#/references" role="doc-biblioref" onclick="">[9]</a></span>: Automatic generation of harnesses for OSS-Fuzz projects <span class="citation" data-cites="oss-fuzz"><a href="#/references" role="doc-biblioref" onclick="">[10]</a></span>. Preexisting harnesses needed.</li>
+<li><strong>FUDGE</strong> <span class="citation" data-cites="fudge"><a href="#/references" role="doc-biblioref" onclick="">[11]</a></span>: <em>Closed-source</em> program for automatic harness generation of C/C++ projects through LLMs.</li>
+<li><strong>FuzzGen</strong> <span class="citation" data-cites="fuzzgen"><a href="#/references" role="doc-biblioref" onclick="">[12]</a></span>: Automatic harness generation through whole system analysis. Uses programs using the API under test to generate a dependency graph of the API functions.</li>
+</ol>
+<aside class="notes">
+<p>Αυτά μόνο είναι τα μεγαλύτερα projects LLM ↔︎ fuzzing.</p>
+<style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
           clip: rect(1px, 1px, 1px, 1px);
@@ -326,26 +314,26 @@ Konstantinos Chousos <a href="https://orcid.org/0009-0008-6063-7915" class="quar
 <section id="dspy" class="slide level2">
 <h2>DSPy</h2>
 <h3 id="declarative-self-improving-python"><strong>D</strong>eclarative <strong>S</strong>elf-improving <strong>Py</strong>thon</h3>
-<p>Declarative Python framework for <em>programming</em>, instead of prompting, LLMs <span class="citation" data-cites="khattabDSPyCompilingDeclarative2023"><a href="#/references" role="doc-biblioref" onclick="">[13]</a></span>. Developed by Stanford’s NLP research team.</p>
+<p>Declarative Python framework for <em>programming</em>, instead of prompting, LLMs <span class="citation" data-cites="dspy"><a href="#/references" role="doc-biblioref" onclick="">[13]</a></span>. Developed by Stanford’s NLP research team.</p>
 </section>
 <section id="dspy-1" class="slide level2">
 <h2>DSPy</h2>
 <h3 id="modules">Modules</h3>
-<p>DSPy provides built-in modules to generically compose LLMs and prompting techniques, e.g.&nbsp;modules corresponding to “Chain of Thought” <span class="citation" data-cites="weiChainofThoughtPromptingElicits2023"><a href="#/references" role="doc-biblioref" onclick="">[14]</a></span> and “ReAct” <span class="citation" data-cites="yaoReActSynergizingReasoning2023"><a href="#/references" role="doc-biblioref" onclick="">[15]</a></span> prompting techniques.</p>
+<p>DSPy provides built-in modules to generically compose LLMs and prompting techniques, e.g.&nbsp;modules corresponding to “Chain of Thought” <span class="citation" data-cites="chainofthought"><a href="#/references" role="doc-biblioref" onclick="">[14]</a></span> and “ReAct” <span class="citation" data-cites="reAct"><a href="#/references" role="doc-biblioref" onclick="">[15]</a></span> prompting techniques.</p>
 <div class="fragment">
 <div class="sourceCode" id="cb1" data-code-line-numbers="|2-3|5-6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> dspy</span>
 <span id="cb1-2"><a href=""></a>lm <span class="op">=</span> dspy.LM(<span class="st">'openai/gpt-4o-mini'</span>, api_key<span class="op">=</span><span class="st">'YOUR_OPENAI_API_KEY'</span>)</span>
 <span id="cb1-3"><a href=""></a>dspy.configure(lm<span class="op">=</span>lm)</span>
 <span id="cb1-4"><a href=""></a></span>
 <span id="cb1-5"><a href=""></a>math <span class="op">=</span> dspy.ChainOfThought(<span class="st">"question -&gt; answer: float"</span>)</span>
-<span id="cb1-6"><a href=""></a>math(question<span class="op">=</span><span class="st">"Two dice are tossed. What is the probability that the sum equals two?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href=""></a>math(question<span class="op">=</span><span class="st">"Two dice are tossed. What is the probability that the sum equals two?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="dspy-2" class="slide level2">
 <h2>DSPy</h2>
 <h3 id="prompt-optimizing">Prompt Optimizing</h3>
 <blockquote>
-<p>Given a few tens or hundreds of representative <em>inputs</em> of your task and a <em>metric</em> that can measure the quality of your system’s outputs, you can use a DSPy optimizer</p>
+<p>Given a few tens or hundreds of representative <em>inputs</em> of your task and a <em>metric</em> that can measure the quality of your system’s outputs, you can use a DSPy optimizer.</p>
 </blockquote>
 </section></section>
 <section>
@@ -356,78 +344,124 @@ Konstantinos Chousos <a href="https://orcid.org/0009-0008-6063-7915" class="quar
 <section id="development-tools-1" class="slide level2">
 <h2>Development Tools</h2>
 <ul>
-<li><a href="https://docs.astral.sh/ruff/">Ruff</a>: Linter &amp; formatter.</li>
-<li><a href="https://mypy-lang.org/">Mypy</a>: Static type checker.</li>
-<li><a href="https://pre-commit.com">Pre-commit</a>: Declarative manager of pre-commit git hooks.</li>
-<li><a href="https://docs.pytest.org/en/stable/">PyTest</a>: Python test framework.</li>
+<li><a href="https://docs.astral.sh/uv/">uv</a>: Python package and project manager (poetry replacement).</li>
+<li><a href="https://docs.astral.sh/ruff/">ruff</a>: Linter &amp; formatter.</li>
+<li><a href="https://mypy-lang.org/">mypy</a>: Static type checker.</li>
+<li><a href="https://pre-commit.com">pre-commit</a>: Declarative manager of pre-commit git hooks.</li>
+<li><a href="https://docs.pytest.org/en/stable/">pytest</a>: Python test framework.</li>
+<li><a href="https://pdoc.dev/">pdoc</a>: Automatic API documentation.</li>
 </ul>
 </section></section>
+<section>
 <section id="current-status" class="title-slide slide level1 center" data-background-color="#40666e">
 <h1>Current Status</h1>
 
 </section>
-
-<section id="references" class="title-slide slide level1 smaller scrollable">
-<h1>References</h1>
+<section id="features" class="slide level2">
+<h2>Features</h2>
+<ul>
+<li class="fragment">Works for simple projects.</li>
+<li class="fragment">All source code files are included in the prompt.</li>
+<li class="fragment">Simple query to LLM (no prompting techniques yet).</li>
+<li class="fragment">Builds the harness semi-automatically.</li>
+<li class="fragment">Simple evaluation:
+<ol type="1">
+<li class="fragment">Built succesfully?</li>
+<li class="fragment">Times out in a reasonable timeframe?</li>
+<li class="fragment">Produced at least one new crash file?</li>
+</ol></li>
+</ul>
+</section></section>
+<section>
+<section id="demo" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>Demo</h1>
+<aside class="notes">
+<p>demo time</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="problemsnext-steps" class="slide level2">
+<h2>Problems/Next steps</h2>
+<ul>
+<li class="fragment">Localization/relevant code.</li>
+<li class="fragment">Complicated project structures and build systems.</li>
+<li class="fragment">Advanced prompting techniques/experimentation with DSPy.
+<ul>
+<li class="fragment">Potential switch to LangChain?</li>
+</ul></li>
+<li class="fragment">Inclusion of static analysis info.</li>
+<li class="fragment">Docker container, GitHub action etc…</li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 <div id="refs" class="smaller references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-manesArtScienceEngineering2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">V. J. M. Manes <em>et al.</em>, <span>“The <span>Art</span>, <span>Science</span>, and <span>Engineering</span> of <span>Fuzzing</span>: <span>A Survey</span>.”</span> Accessed: Aug. 01, 2024. [Online]. Available: <a href="http://arxiv.org/abs/1812.00140">http://arxiv.org/abs/1812.00140</a></div>
+<div id="ref-manes2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">V. J. M. Manes <em>et al.</em>, <span>“The <span>Art</span>, <span>Science</span>, and <span>Engineering</span> of <span>Fuzzing</span>: <span>A Survey</span>.”</span> [Online]. Available: <a href="http://arxiv.org/abs/1812.00140">http://arxiv.org/abs/1812.00140</a></div>
 </div>
-<div id="ref-liIRISLLMAssistedStatic2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Z. Li, S. Dutta, and M. Naik, <span>“<span>IRIS</span>: <span>LLM-Assisted Static Analysis</span> for <span>Detecting Security Vulnerabilities</span>.”</span> Accessed: May 04, 2025. [Online]. Available: <a href="http://arxiv.org/abs/2405.17238">http://arxiv.org/abs/2405.17238</a></div>
+<div id="ref-iris" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Z. Li, S. Dutta, and M. Naik, <span>“<span>IRIS</span>: <span>LLM-Assisted Static Analysis</span> for <span>Detecting Security Vulnerabilities</span>.”</span> [Online]. Available: <a href="http://arxiv.org/abs/2405.17238">http://arxiv.org/abs/2405.17238</a></div>
 </div>
-<div id="ref-wangProphetFuzzFullyAutomated2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. Wang, G. Zhou, L. Chen, D. Li, and Y. Miao, <span>“<span>ProphetFuzz</span>: <span>Fully Automated Prediction</span> and <span>Fuzzing</span> of <span>High-Risk Option Combinations</span> with <span>Only Documentation</span> via <span>Large Language Model</span>.”</span> Accessed: Oct. 08, 2024. [Online]. Available: <a href="http://arxiv.org/abs/2409.00922">http://arxiv.org/abs/2409.00922</a></div>
+<div id="ref-prophetfuzz" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. Wang, G. Zhou, L. Chen, D. Li, and Y. Miao, <span>“<span>ProphetFuzz</span>: <span>Fully Automated Prediction</span> and <span>Fuzzing</span> of <span>High-Risk Option Combinations</span> with <span>Only Documentation</span> via <span>Large Language Model</span>.”</span> [Online]. Available: <a href="http://arxiv.org/abs/2409.00922">http://arxiv.org/abs/2409.00922</a></div>
 </div>
-<div id="ref-fuzzgpt2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Y. Deng, C. S. Xia, C. Yang, S. D. Zhang, S. Yang, and L. Zhang, <span>“Large <span>Language Models</span> are <span>Edge-Case Fuzzers</span>: <span>Testing Deep Learning Libraries</span> via <span>FuzzGPT</span>.”</span> Accessed: May 08, 2025. [Online]. Available: <a href="http://arxiv.org/abs/2304.02014">http://arxiv.org/abs/2304.02014</a></div>
+<div id="ref-fuzzgpt" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Y. Deng, C. S. Xia, C. Yang, S. D. Zhang, S. Yang, and L. Zhang, <span>“Large <span>Language Models</span> are <span>Edge-Case Fuzzers</span>: <span>Testing Deep Learning Libraries</span> via <span>FuzzGPT</span>.”</span> [Online]. Available: <a href="http://arxiv.org/abs/2304.02014">http://arxiv.org/abs/2304.02014</a></div>
 </div>
-<div id="ref-titanfuzz2023" class="csl-entry" role="listitem">
+<div id="ref-titanfuzz" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[5] </div><div class="csl-right-inline">Y. Deng, C. S. Xia, H. Peng, C. Yang, and L. Zhang, <span>“Large <span>Language Models Are Zero-Shot Fuzzers</span>: <span>Fuzzing Deep-Learning Libraries</span> via <span>Large Language Models</span>,”</span> in <em>Proceedings of the 32nd <span>ACM SIGSOFT International Symposium</span> on <span>Software Testing</span> and <span>Analysis</span></em>, in <span>ISSTA</span> 2023. New York, NY, USA: Association for Computing Machinery, Jul. 2023, pp. 423–435. doi: <a href="https://doi.org/10.1145/3597926.3598067">10.1145/3597926.3598067</a>.</div>
 </div>
-<div id="ref-paszkePyTorchImperativeStyle2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">A. Paszke <em>et al.</em>, <span>“<span>PyTorch</span>: <span>An Imperative Style</span>, <span>High-Performance Deep Learning Library</span>.”</span> Accessed: Dec. 31, 2023. [Online]. Available: <a href="http://arxiv.org/abs/1912.01703">http://arxiv.org/abs/1912.01703</a></div>
+<div id="ref-pytorch" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">A. Paszke <em>et al.</em>, <span>“<span>PyTorch</span>: <span>An Imperative Style</span>, <span>High-Performance Deep Learning Library</span>.”</span> [Online]. Available: <a href="http://arxiv.org/abs/1912.01703">http://arxiv.org/abs/1912.01703</a></div>
 </div>
-<div id="ref-tensorflow2015" class="csl-entry" role="listitem">
+<div id="ref-tensorflow" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[7] </div><div class="csl-right-inline">M. Abadi <em>et al.</em>, <em><span>TensorFlow</span>, <span class="nocase">Large-scale</span> machine learning on heterogeneous systems</em>. (Nov. 2015). doi: <a href="https://doi.org/10.5281/zenodo.4724125">10.5281/zenodo.4724125</a>.</div>
 </div>
-<div id="ref-cadarKLEEUnassistedAutomatic2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">C. Cadar, D. Dunbar, and D. Engler, <span>“<span>KLEE</span>: <span>Unassisted</span> and <span>Automatic Generation</span> of <span>High-Coverage Tests</span> for <span>Complex Systems Programs</span>,”</span> presented at the <span>USENIX Symposium</span> on <span>Operating Systems Design</span> and <span>Implementation</span>, Dec. 2008. Accessed: Mar. 17, 2025. [Online]. Available: <a href="https://www.semanticscholar.org/paper/KLEE%3A-Unassisted-and-Automatic-Generation-of-Tests-Cadar-Dunbar/0b93657965e506dfbd56fbc1c1d4b9666b1d01c8">https://www.semanticscholar.org/paper/KLEE%3A-Unassisted-and-Automatic-Generation-of-Tests-Cadar-Dunbar/0b93657965e506dfbd56fbc1c1d4b9666b1d01c8</a></div>
+<div id="ref-klee" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">C. Cadar, D. Dunbar, and D. Engler, <span>“<span>KLEE</span>: <span>Unassisted</span> and <span>Automatic Generation</span> of <span>High-Coverage Tests</span> for <span>Complex Systems Programs</span>,”</span> presented at the <span>USENIX Symposium</span> on <span>Operating Systems Design</span> and <span>Implementation</span>, Dec. 2008. Available: <a href="https://www.semanticscholar.org/paper/KLEE%3A-Unassisted-and-Automatic-Generation-of-Tests-Cadar-Dunbar/0b93657965e506dfbd56fbc1c1d4b9666b1d01c8">https://www.semanticscholar.org/paper/KLEE%3A-Unassisted-and-Automatic-Generation-of-Tests-Cadar-Dunbar/0b93657965e506dfbd56fbc1c1d4b9666b1d01c8</a></div>
 </div>
-<div id="ref-Liu_OSS-Fuzz-Gen_Automated_Fuzz_2024" class="csl-entry" role="listitem">
+<div id="ref-oss-fuzz-gen" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[9] </div><div class="csl-right-inline">D. Liu, O. Chang, J. metzman, M. Sablotny, and M. Maruseac, <em><span class="nocase">OSS-fuzz-gen</span>: <span>Automated</span> fuzz target generation</em>. (May 2024). Available: <a href="https://github.com/google/oss-fuzz-gen">https://github.com/google/oss-fuzz-gen</a></div>
 </div>
-<div id="ref-aryaOSSFuzz2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline">A. Arya, O. Chang, J. Metzman, K. Serebryany, and D. Liu, <em><span>OSS-Fuzz</span></em>. (Apr. 08, 2025). Accessed: Apr. 09, 2025. [Online]. Available: <a href="https://github.com/google/oss-fuzz">https://github.com/google/oss-fuzz</a></div>
+<div id="ref-oss-fuzz" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">A. Arya, O. Chang, J. Metzman, K. Serebryany, and D. Liu, <em><span>OSS-Fuzz</span></em>. (Apr. 08, 2025). Available: <a href="https://github.com/google/oss-fuzz">https://github.com/google/oss-fuzz</a></div>
 </div>
-<div id="ref-babicFUDGEFuzzDriver2019" class="csl-entry" role="listitem">
+<div id="ref-fudge" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[11] </div><div class="csl-right-inline">D. Babić <em>et al.</em>, <span>“<span>FUDGE</span>: Fuzz driver generation at scale,”</span> in <em>Proceedings of the 2019 27th <span>ACM Joint Meeting</span> on <span>European Software Engineering Conference</span> and <span>Symposium</span> on the <span>Foundations</span> of <span>Software Engineering</span></em>, Tallinn Estonia: ACM, Aug. 2019, pp. 975–985. doi: <a href="https://doi.org/10.1145/3338906.3340456">10.1145/3338906.3340456</a>.</div>
 </div>
-<div id="ref-ispoglouFuzzGenAutomaticFuzzer2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">K. Ispoglou, D. Austin, V. Mohan, and M. Payer, <span>“{}<span>FuzzGen</span>{}: <span>Automatic</span> fuzzer generation,”</span> in <em>29th <span>USENIX Security Symposium</span> (<span>USENIX Security</span> 20)</em>, 2020, pp. 2271–2287. Accessed: May 08, 2025. [Online]. Available: <a href="https://www.usenix.org/conference/usenixsecurity20/presentation/ispoglou">https://www.usenix.org/conference/usenixsecurity20/presentation/ispoglou</a></div>
+<div id="ref-fuzzgen" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">K. Ispoglou, D. Austin, V. Mohan, and M. Payer, <span>“<span>FuzzGen</span>: <span>Automatic</span> fuzzer generation,”</span> in <em>29th <span>USENIX Security Symposium</span> (<span>USENIX Security</span> 20)</em>, 2020, pp. 2271–2287. Available: <a href="https://www.usenix.org/conference/usenixsecurity20/presentation/ispoglou">https://www.usenix.org/conference/usenixsecurity20/presentation/ispoglou</a></div>
 </div>
-<div id="ref-khattabDSPyCompilingDeclarative2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">O. Khattab <em>et al.</em>, <span>“<span>DSPy</span>: <span>Compiling Declarative Language Model Calls</span> into <span>Self-Improving Pipelines</span>.”</span> Accessed: Apr. 30, 2025. [Online]. Available: <a href="http://arxiv.org/abs/2310.03714">http://arxiv.org/abs/2310.03714</a></div>
+<div id="ref-dspy" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">O. Khattab <em>et al.</em>, <span>“<span>DSPy</span>: <span>Compiling Declarative Language Model Calls</span> into <span>Self-Improving Pipelines</span>.”</span> [Online]. Available: <a href="http://arxiv.org/abs/2310.03714">http://arxiv.org/abs/2310.03714</a></div>
 </div>
-<div id="ref-weiChainofThoughtPromptingElicits2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">J. Wei <em>et al.</em>, <span>“Chain-of-<span>Thought Prompting Elicits Reasoning</span> in <span>Large Language Models</span>.”</span> Accessed: May 08, 2025. [Online]. Available: <a href="http://arxiv.org/abs/2201.11903">http://arxiv.org/abs/2201.11903</a></div>
+<div id="ref-chainofthought" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">J. Wei <em>et al.</em>, <span>“Chain-of-<span>Thought Prompting Elicits Reasoning</span> in <span>Large Language Models</span>.”</span> [Online]. Available: <a href="http://arxiv.org/abs/2201.11903">http://arxiv.org/abs/2201.11903</a></div>
 </div>
-<div id="ref-yaoReActSynergizingReasoning2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">S. Yao <em>et al.</em>, <span>“<span>ReAct</span>: <span>Synergizing Reasoning</span> and <span>Acting</span> in <span>Language Models</span>.”</span> Accessed: Oct. 19, 2024. [Online]. Available: <a href="http://arxiv.org/abs/2210.03629">http://arxiv.org/abs/2210.03629</a></div>
+<div id="ref-reAct" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">S. Yao <em>et al.</em>, <span>“<span>ReAct</span>: <span>Synergizing Reasoning</span> and <span>Acting</span> in <span>Language Models</span>.”</span> [Online]. Available: <a href="http://arxiv.org/abs/2210.03629">http://arxiv.org/abs/2210.03629</a></div>
 </div>
 </div>
-</section>
-
+</section></section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
 <p>These slides can be found at: <a href="https://kchousos.github.io/demo-01/" class="uri">https://kchousos.github.io/demo-01/</a></p>
 </section>
 
-<section id="thank-you" class="title-slide slide level1 center">
-<h1>Thank you!</h1>
+<section id="section-1" class="title-slide slide level1 center">
+<h1></h1>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href=".png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src=".png" class="quarto-figure quarto-figure-center"></a></p>
+<p><a href="https://media3.giphy.com/media/6tHy8UAbv3zgs/giphy.gif?cid=6c09b952y4e0c9315imrplpx5yf1ajnlol53u1jdd5bhztqe&amp;ep=v1_internal_gif_by_id&amp;rid=giphy.gif&amp;ct=g" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="https://media3.giphy.com/media/6tHy8UAbv3zgs/giphy.gif?cid=6c09b952y4e0c9315imrplpx5yf1ajnlol53u1jdd5bhztqe&amp;ep=v1_internal_gif_by_id&amp;rid=giphy.gif&amp;ct=g" class="quarto-figure quarto-figure-center"></a></p>
 </figure>
 </div>
 
@@ -461,16 +495,6 @@ Konstantinos Chousos <a href="https://orcid.org/0009-0008-6063-7915" class="quar
       // Full list of configuration options available at:
       // https://revealjs.com/config/
       Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': false,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
-'smaller': false,
-
 'controlsAuto': true,
 'previewLinksAuto': false,
 'pdfSeparateFragments': false,
@@ -650,7 +674,6 @@ Konstantinos Chousos <a href="https://orcid.org/0009-0008-6063-7915" class="quar
 
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
-QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
           RevealNotes,
